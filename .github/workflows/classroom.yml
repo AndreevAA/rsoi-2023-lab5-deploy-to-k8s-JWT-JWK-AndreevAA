@@ -29,15 +29,25 @@ jobs:
             docker build --no-cache -t andreevaa/library ./src/library/ && docker push andreevaa/library:latest
             docker build --no-cache -t andreevaa/reservation ./src/reservation/ && docker push andreevaa/reservation:latest
 
-      - name: Deploy to k8s
+      - name: Prepare Kube config
+        env:
+          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+          KUBECONFIG_CA_FILE: '${{ secrets.KUBECONFIG_CA }}'
         run: |
-          kubectl config set-cluster rsoi --server=${{ secrets.KUBE_URL }} --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin-user --token=${{ secrets.KUBE_TOKEN }}
-          kubectl config set-context default --cluster=rsoi --user=admin-user
-          kubectl config use-context default
-          helm delete postgres && helm install postgres ./k8s/postgres-chart/
-          helm delete services && helm install services ./k8s/services-chart/
-          sleep 65
+          echo "$KUBECONFIG_FILE" > ./kube.config 
+          echo "$KUBECONFIG_CA_FILE" > ./ca.pem 
+
+      - name: 'Deploy DB'
+        run: |
+          cd k8s/postgres-chart
+          helm upgrade db . --kubeconfig ../../kube.config
+          sleep 60
+
+      - name: 'Deploy App'
+        run: |
+          cd k8s/services-chart/charts/services
+          helm upgrade app . --kubeconfig ../../../../kube.config
+          sleep 60
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
