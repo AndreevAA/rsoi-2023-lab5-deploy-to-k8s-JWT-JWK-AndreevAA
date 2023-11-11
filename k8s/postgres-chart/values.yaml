@@ -1,4 +1,4 @@
-version: 13
+version: 13.8
 port: 5432
 
 default_database:
@@ -10,8 +10,14 @@ users:
   - name: program
     password: test
 
-datases:
-  - name: simple_backend
+databases:
+  - name: gateway
+    user: program
+  - name: libraries
+    user: program
+  - name: ratings
+    user: program
+  - name: reservations
     user: program
 
 resources:
