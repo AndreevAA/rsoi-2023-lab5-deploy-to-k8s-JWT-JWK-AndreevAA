@@ -45,8 +45,8 @@ jobs:
 
       - name: 'Deploy App'
         run: |
-          cd k8s/services-chart/charts
-          helm upgrade app . --kubeconfig ../../../kube.config
+          cd k8s/services-chart
+          helm upgrade app . --kubeconfig ../../kube.config
           sleep 60
 
       - name: Run API Tests
