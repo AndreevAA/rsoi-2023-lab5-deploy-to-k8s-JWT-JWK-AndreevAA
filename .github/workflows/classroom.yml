@@ -6,8 +6,6 @@ on:
 
 jobs:
   build:
-    env:
-      GIT_SSL_CAINFO: ${{ secrets.CERTIFICATE }}
     name: Autograding
     runs-on: ubuntu-latest
     steps:
