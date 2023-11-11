@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install root certificate
-          run: sudo cp dev-fjjc71sgfbfz112v.cer /usr/local/share/ca-certificates/ && sudo update-ca-certificates
+        run: sudo cp dev-fjjc71sgfbfz112v.cer /usr/local/share/ca-certificates/ && sudo update-ca-certificates
 
       - uses: actions/checkout@v3
         with:
