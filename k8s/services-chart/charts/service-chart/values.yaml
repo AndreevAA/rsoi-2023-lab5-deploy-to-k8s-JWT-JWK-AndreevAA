@@ -1,4 +1,4 @@
-domain: tichq.ru
+domain: "158.160.108.69"
 service:
   port: 8080
   isGateway:

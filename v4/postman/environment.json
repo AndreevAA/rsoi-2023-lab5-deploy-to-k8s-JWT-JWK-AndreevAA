@@ -4,17 +4,17 @@
   "values": [
     {
       "key": "serviceUrl",
-      "value": "http://158.160.121.238",
+      "value": "https://158.160.121.238",
       "enabled": true
     },
     {
       "key": "identityProviderUrl",
-      "value": "http://158.160.121.238",
+      "value": "https://dev-fjjc71sgfbfz112v.us.auth0.com",
       "enabled": true
     },
     {
       "key": "username",
-      "value": "TestMax",
+      "value": "andreev@ingry.tech",
       "enabled": true
     },
     {
@@ -23,13 +23,13 @@
       "enabled": true
     },
     {
-      "key": "clientId",
-      "value": "BDgzoBFQ4OHG4zR2inCu0m3k3Eu1hUOJBcGFeftX",
+      "key": "client_id",
+      "value": "Lrx2sC1VUjsoHIHtIeF4Ed7zFu5lUaeM",
       "enabled": true
     },
     {
-      "key": "clientSecret",
-      "value": "",
+      "key": "client_secret",
+      "value": "nS6EFTkqwVmw7E83ZhoND36EFywZP1cuo6UlbItCOAxWyfBUMvG9BD21kY7iu3HZ",
       "enabled": true
     }
   ],
