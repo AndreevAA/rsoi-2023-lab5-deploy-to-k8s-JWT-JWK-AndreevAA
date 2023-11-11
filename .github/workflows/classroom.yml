@@ -4,11 +4,10 @@ on:
     branches:
       - master
 
-env:
-  GIT_SSL_CAINFO: ${{ secrets.CERTIFICATE }}
-
 jobs:
   build:
+    env:
+      GIT_SSL_CAINFO: ${{ secrets.CERTIFICATE }}
     name: Autograding
     runs-on: ubuntu-latest
     steps:
