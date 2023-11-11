@@ -4,12 +4,6 @@ on:
     branches:
       - master
 
-env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USER }}
-  DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASSWORD }}
-  KUBE_URL: ${{ secrets.KUBE_URL }}
-  KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-
 jobs:
   build:
     name: Autograding
@@ -37,8 +31,8 @@ jobs:
 
       - name: Deploy to k8s
         run: |
-          kubectl config set-cluster rsoi --server="$KUBE_URL" --insecure-skip-tls-verify=true
-          kubectl config set-credentials admin-user --token="$KUBE_TOKEN"
+          kubectl config set-cluster rsoi --server=${{ secrets.KUBE_URL }} --insecure-skip-tls-verify=true
+          kubectl config set-credentials admin-user --token=${{ secrets.KUBE_TOKEN }}
           kubectl config set-context default --cluster=rsoi --user=admin-user
           kubectl config use-context default
           helm delete postgres && helm install postgres ./k8s/postgres-chart/
