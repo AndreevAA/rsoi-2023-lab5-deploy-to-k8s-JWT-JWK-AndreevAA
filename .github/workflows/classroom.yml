@@ -24,10 +24,10 @@ jobs:
       - name: Push to docker hub
         timeout-minutes: 15
         run: |
-            docker build --no-cache -t tichq/gateway ./src/gateway/ && docker push tichq/gateway:latest
-            docker build --no-cache -t tichq/rating ./src/rating/ && docker push tichq/rating:latest
-            docker build --no-cache -t tichq/library ./src/library/ && docker push tichq/library:latest
-            docker build --no-cache -t tichq/reservation ./src/reservation/ && docker push tichq/reservation:latest
+            docker build --no-cache -t andreevaa/gateway ./src/gateway/ && docker push andreevaa/gateway:latest
+            docker build --no-cache -t andreevaa/rating ./src/rating/ && docker push andreevaa/rating:latest
+            docker build --no-cache -t andreevaa/library ./src/library/ && docker push andreevaa/library:latest
+            docker build --no-cache -t andreevaa/reservation ./src/reservation/ && docker push andreevaa/reservation:latest
 
       - name: Deploy to k8s
         run: |
