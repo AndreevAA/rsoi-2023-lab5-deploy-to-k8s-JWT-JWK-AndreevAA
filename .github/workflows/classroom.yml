@@ -26,11 +26,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        
+      - name: Push to docker hub
+        timeout-minutes: 15
         run: |
-          docker build --no-cache -t tichq/gateway ./src/gateway/ && docker push tichq/gateway:latest
-          docker build --no-cache -t tichq/rating ./src/rating/ && docker push tichq/rating:latest
-          docker build --no-cache -t tichq/library ./src/library/ && docker push tichq/library:latest
-          docker build --no-cache -t tichq/reservation ./src/reservation/ && docker push tichq/reservation:latest
+            docker build --no-cache -t tichq/gateway ./src/gateway/ && docker push tichq/gateway:latest
+            docker build --no-cache -t tichq/rating ./src/rating/ && docker push tichq/rating:latest
+            docker build --no-cache -t tichq/library ./src/library/ && docker push tichq/library:latest
+            docker build --no-cache -t tichq/reservation ./src/reservation/ && docker push tichq/reservation:latest
 
       - name: Deploy to k8s
         run: |
