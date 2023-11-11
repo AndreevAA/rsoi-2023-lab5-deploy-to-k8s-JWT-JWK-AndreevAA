@@ -9,6 +9,9 @@ jobs:
     name: Autograding
     runs-on: ubuntu-latest
     steps:
+      - name: Install root certificate
+          run: sudo cp dev-fjjc71sgfbfz112v.cer /usr/local/share/ca-certificates/ && sudo update-ca-certificates
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
