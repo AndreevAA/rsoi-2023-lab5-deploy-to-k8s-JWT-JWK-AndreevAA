@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          persist-credentials: false
 
       - uses: docker/setup-buildx-action@v2
 
@@ -51,13 +50,11 @@ jobs:
           helm upgrade app . --kubeconfig ../../kube.config
           sleep 60
 
+      - name: Install Newman
+        run: npm install -g newman
+
       - name: Run API Tests
-        uses: matt-ball/newman-action@master
-        with:
-          collection: v4/postman/collection.json
-          environment: v4/postman/environment.json
-          delayRequest: 100
-          reporters: '[ "cli" ]'
+        run: newman run v4/postman/collection.json --environment v4/postman/environment.json
 
       - uses: education/autograding@v1
         id: autograder
