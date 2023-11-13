@@ -1,0 +1,4 @@
+image:
+repository: rsoi-2023-lab5-deploy-to-k8s-JWT-JWK-AndreevAA
+tag: latest
+pullPolicy: IfNotPresent
