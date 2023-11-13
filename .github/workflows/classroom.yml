@@ -39,16 +39,9 @@ jobs:
           echo "$KUBECONFIG_FILE" > ./kube.config 
           echo "$KUBECONFIG_CA_FILE" > ./ca.pem 
 
-      - name: 'Deploy DB'
+      - name: 'Deploy k8s'
         run: |
-          cd k8s/postgres-chart
-          helm upgrade db . --kubeconfig ../../kube.config
-          sleep 60
-
-      - name: 'Deploy App'
-        run: |
-          cd k8s/services-chart
-          helm upgrade app . --kubeconfig ../../kube.config
+          helm install helm1 ./myHelm/ --kubeconfig ../../kube.config
           sleep 60
 
       - name: Install Newman
