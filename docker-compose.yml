@@ -15,7 +15,7 @@ services:
 #      - "5432:5432"
 
   gateway:
-    image: griffire/lab4-gateway
+    image: andreevaa/lab4-gateway
     build:
       context: ./v2/python_v2/gateway
       dockerfile: Dockerfile
@@ -27,7 +27,7 @@ services:
     #   - postgres
 
   reservation:
-    image: griffire/lab4-reservation
+    image: andreevaa/lab4-reservation
     build:
       context: ./v2/python_v2/reservation
       dockerfile: Dockerfile
@@ -39,7 +39,7 @@ services:
     #   - postgres
 
   loyalty:
-    image: griffire/lab4-loyalty
+    image: andreevaa/lab4-loyalty
     build:
       context: ./v2/python_v2/loyalty
       dockerfile: Dockerfile
@@ -51,7 +51,7 @@ services:
     #   - postgres
 
   payment:
-    image: griffire/lab4-payment
+    image: andreevaa/lab4-payment
     build:
       context: ./v2/python_v2/payment
       dockerfile: Dockerfile
