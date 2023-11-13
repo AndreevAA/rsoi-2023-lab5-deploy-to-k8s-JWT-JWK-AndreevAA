@@ -4,9 +4,6 @@ on:
     branches:
       - master
 
-env:
-  OIDC_RSA_PRIVATE_KEY: ${{ secrets.OIDC_RSA_PRIVATE_KEY }}
-
 jobs:
   build:
     name: Autograding
@@ -28,10 +25,7 @@ jobs:
       - name: Push to docker hub
         timeout-minutes: 15
         run: |
-            docker build --no-cache -t andreevaa/gateway ./src/gateway/ && docker push andreevaa/gateway:latest
-            docker build --no-cache -t andreevaa/rating ./src/rating/ && docker push andreevaa/rating:latest
-            docker build --no-cache -t andreevaa/library ./src/library/ && docker push andreevaa/library:latest
-            docker build --no-cache -t andreevaa/reservation ./src/reservation/ && docker push andreevaa/reservation:latest
+            docker-compose push
 
       - name: Prepare Kube config
         env:
@@ -56,8 +50,8 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Run API Tests
-        run: newman run v4/postman/collection.json --environment v4/postman/environment.json --insecure
+      - name: Run API Test
+        run: newman run v2/postman/collection.json --environment v2/postman/environment.json --insecure
 
       - uses: education/autograding@v1
         id: autograder
