@@ -34,16 +34,41 @@
 							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
+						"header": [],
 						"body": {
-                            "mode": "raw",
-							"raw": "{ \"client_id\":\"{{clientId}}\", \"client_secret\":\"{{clientSecret}}\",\"audience\":\"https://lab5griffv1api\", \"grant_type\":\"password\",\"username\":\"{{username}}\", \"password\":\"{{password}}\"  }"
-                            
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
 							"raw": "{{identityProviderUrl}}/oauth/token",

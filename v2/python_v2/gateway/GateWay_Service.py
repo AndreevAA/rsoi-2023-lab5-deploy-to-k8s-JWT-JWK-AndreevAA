@@ -47,7 +47,6 @@ def token_parse(token: str):
         token,
         signing_key.key,
         algorithms=["RS256"],
-        audience="https://lab5griffv1api",
         options={"verify_signature": False}
     )
     print(data)
@@ -62,13 +61,19 @@ def get_token(request: Request):
     bearer = headers.get('authorization')
     print('bearer')
     print(bearer)
-    # _token_parse(bearer.split()[1])
+    print("split+[1]:")
+    print(_token_parse(bearer.split()[1]))
     data = None
     try:
         data = token_parse(bearer.split()[1])
     except:
         data = None
-    print('data')
+        if len(bearer)>20:
+            data = bearer.split()[1]
+        # data = None
+    if data == None:
+        data = bearer.split()[1]
+    print('data sdfdsf')
     print(data)
     return data
 

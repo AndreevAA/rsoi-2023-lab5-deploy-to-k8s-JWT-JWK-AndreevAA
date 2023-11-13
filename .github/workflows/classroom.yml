@@ -41,7 +41,7 @@ jobs:
 
       - name: 'Deploy k8s'
         run: |
-          helm install helm1 ./myHelm/ --kubeconfig ../../kube.config
+          helm install app ./myHelm --kubeconfig test.kubeconfig
           sleep 60
 
       - name: Install Newman
