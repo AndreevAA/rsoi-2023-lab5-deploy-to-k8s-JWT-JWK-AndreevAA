@@ -31,9 +31,10 @@ class Request:
     def execute(self):
         if OAuth2Authentication().authenticate(self.instance) is None:
             return Response(status_code=401)
-        headers = {k: v for k, v in self.headers.items()}
-        headers["Authorization"] = self.instance.user.username
         try:
+            headers = {k: v for k, v in self.headers.items()}
+            headers["Authorization"] = self.instance.user.username
+        
             return requests.request(
                 method=self.method,
                 url=self.url,
