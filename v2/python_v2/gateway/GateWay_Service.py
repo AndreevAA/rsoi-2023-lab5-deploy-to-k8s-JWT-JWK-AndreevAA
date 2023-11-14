@@ -73,7 +73,7 @@ def get_token(request: Request):
         # data = None
     if data == None:
         data = bearer.split()[1]
-    print('data sdfdsf')
+    print('datasdfdsf')
     print(data)
     return data
 
